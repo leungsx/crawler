@@ -40,20 +40,24 @@ public class QueueCrawlerTest
 	public void testCrawl() throws Exception{
 		Fetcher fetcher = null;
 		CrawlMeta crawlMeta = null;
-		int i = 1;
-		String url = "https://catalog.lib.uchicago.edu/vufind/Search/Results?filter%5B%5D=format%3A%22E-Resource%22&filter%5B%5D=format%3A%22Book%22&type=AllFields&page=";
-		while(i<=3){
-			fetcher = new Fetcher(1,QueueCrawlerJob.class);
-			String url1 = url + i;
-			System.out.println(url1);
-			i++;
+		//int i = 1;
+		//String url = "https://catalog.lib.uchicago.edu/vufind/Search/Results?filter%5B%5D=format%3A%22E-Resource%22&filter%5B%5D=format%3A%22Book%22&type=AllFields&page=";
+		String url = "https://searchworks.stanford.edu/?f%5Bformat_main_ssim%5D%5B%5D=Book";
+		//while(i<=3){
+			fetcher = new Fetcher(2,QueueCrawlerJob.class);
+			//String url1 = url + i;
+			//System.out.println(url1);
+			//i++;
 			crawlMeta = new CrawlMeta();
-			crawlMeta.setUrl(url1);
-			crawlMeta.addPositiveRegex("https://catalog.lib.uchicago.edu/vufind/Record/(.*){0,5}\\d+$");
-			fetcher.fetchQueue.isOver = false;
+			crawlMeta.setUrl(url);
+			//crawlMeta.addPositiveRegex("https://searchworks.stanford.edu/view/(.*){0,5}\\d+$");
+			//crawlMeta.addPositiveRegex("https://searchworks.stanford.edu/?f%5Bformat_main_ssim%5D%5B%5D=Book");
+			crawlMeta.addPositiveRegex("https://searchworks.stanford.edu/view/(.*){0,5}\\d+$");
+			//fetcher.fetchQueue.isOver = false;
 			fetcher.addFeed(crawlMeta);
 			fetcher.start();
-		}	
+			
+		//}	
 	
 	}
 	

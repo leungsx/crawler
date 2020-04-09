@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import lombok.extern.slf4j.Slf4j;
 
+import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
@@ -26,7 +27,11 @@ public class ResultFilter
 		try {
             // 解析返回的网页中的链接，将满足条件的扔到爬取队列中
             int currentDepth = crawlMeta.getCurrentDepth();
-            if (currentDepth >= maxDepth) {
+            if(currentDepth == maxDepth){
+            	Document elements = crawlResult.getHtmlDoc();
+            	System.out.println(elements.text());
+            }
+            if (currentDepth >maxDepth) {
                 return;
             }
 
